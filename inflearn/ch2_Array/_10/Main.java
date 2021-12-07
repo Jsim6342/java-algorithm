@@ -12,7 +12,7 @@ class Main {
 
         for(int i = 1 ; i <= n ; i++) {
             for(int j = 1; j <= n ; j++) {
-                if(isMountainTop(arr, x, y, i, j)) answer += 1;
+                if(isMountainTop(arr, dx, dy, i, j)) answer += 1;
             }
         }
 
