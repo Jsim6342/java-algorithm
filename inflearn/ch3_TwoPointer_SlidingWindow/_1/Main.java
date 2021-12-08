@@ -20,12 +20,9 @@ class Main {
         Integer[] arrA = new Integer[n];
         for(int i = 0 ; i < n ; i++) arrA[i] = sc.nextInt();
             
-
         int m = sc.nextInt();
         Integer[] arrB = new Integer[m];
         for(int i = 0 ; i < m ; i++) arrB[i] = sc.nextInt();
-
-
 
         for(Integer x : T.solution(n, arrA, arrB)) {
             System.out.print(x + " ");
