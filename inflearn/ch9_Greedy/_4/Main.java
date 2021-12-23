@@ -1,4 +1,4 @@
-package inflearn.ch9_Greedy._4._3;
+package inflearn.ch9_Greedy._4;
 
 import java.util.ArrayList;
 import java.util.Collections;
