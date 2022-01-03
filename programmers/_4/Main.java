@@ -26,18 +26,13 @@ class Main {
         int numberOfArea = 0;
         int maxSizeOfOneArea = 0;
 
-        // 영역 갯수 카운트(종류)
+        // 2차원 배열 picture 탐색
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if(picture[i][j] == 0) check[i][j] = 1;
-            }
-        }
-
-        // 최대 영역 갯수 카운트
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+                // 체크된 지점은 건너뛴다.
                 if(check[i][j] == 1) continue;
 
+                // 체크되지 않은 지점 부터 BFS 탐색
                 Queue<Point> queue = new LinkedList<>();
                 queue.add(new Point(i, j));
                 check[i][j] = 1;
