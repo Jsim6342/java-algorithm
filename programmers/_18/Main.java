@@ -2,7 +2,7 @@ package programmers._18;
 
 import java.util.*;
 
-// 수식 최대화(틀린 풀이)
+// 수식 최대화
 class Main {
     static char[] prior = {'+', '-', '*'};
     static boolean[] check = new boolean[3];
