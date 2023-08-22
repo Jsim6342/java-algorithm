@@ -8,15 +8,16 @@ import java.util.Scanner;
  */
 class Main {
 
-    public int solution() {
-        return 0; // TODO
+    public int solution(int number) {
+        if((number % 4 == 0 && number % 100 != 0) || number % 400 == 0) return 1;
+        return 0;
     }
 
     public static void main(String[] args) {
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        String contents = sc.next();
+        int input = sc.nextInt();
 
-        System.out.println(T.solution());
+        System.out.println(T.solution(input));
     }
 }
