@@ -36,7 +36,7 @@ class Main {
                 }
             }
             int bingGoCount = checkBingGo(bingGo);
-            if(bingGoCount == 3) {
+            if(bingGoCount >= 3) {
                 System.out.println(i + 1);
                 break;
             }
