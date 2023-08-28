@@ -11,22 +11,20 @@ import java.util.stream.IntStream;
  */
 class Main {
 
-    List<Integer> choose = new ArrayList<>();
-    List<List<Integer>> result = new ArrayList<>();
-    int N = 10;
-    int T = 3;
+    static List<Integer> choose = new ArrayList<>();
+    static List<List<Integer>> result = new ArrayList<>();
+    static int N = 10;
+    static int T = 3;
 
     public static void main(String[] args) {
-        Main main = new Main();
+        permutation(0);
 
-        main.permutation(0);
-
-        main.result.stream().forEach(System.out::println);
-        System.out.println(main.result.size());
+        result.stream().forEach(System.out::println);
+        System.out.println(result.size());
 
     }
 
-    private void permutation(int level) {
+    private static void permutation(int level) {
         if(level == T) {
             result.add(new ArrayList<>(choose));
             return;

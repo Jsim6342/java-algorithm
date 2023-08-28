@@ -9,22 +9,21 @@ import java.util.List;
  */
 class Main {
 
-    List<Integer> choose = new ArrayList<>();
-    List<List<Integer>> result = new ArrayList<>();
+    static List<Integer> choose = new ArrayList<>();
+    static List<List<Integer>> result = new ArrayList<>();
 
-    int N = 10;
-    int T = 3;
+    static int N = 10;
+    static int T = 3;
 
     public static void main(String[] args) {
 
-        Main main = new Main();
-        main.combination(0, 0);
-        main.result.stream().forEach(System.out::println);
-        System.out.println(main.result.size());
+        combination(0, 0);
+        result.stream().forEach(System.out::println);
+        System.out.println(result.size());
 
     }
 
-    private void combination(int level, int index) {
+    private static void combination(int level, int index) {
         if(level == T) {
             result.add(new ArrayList<>(choose));
             return;

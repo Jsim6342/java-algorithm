@@ -19,6 +19,8 @@ class Main {
 
         arr.stream().forEach(System.out::println);
 
+        // TODO. 정렬 구현
+
         // 가장 앞 요소로 내림차순 정렬
 
 
