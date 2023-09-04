@@ -3,6 +3,7 @@ package baekjoon.implement._17;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,16 +15,14 @@ import java.util.stream.Collectors;
  */
 class Main {
 
-    // TODO. 코드 중복 제거 등 리팩토링
-    // TODO. 테스트케이스 예외상황 찾기
-
     static int[][] board;
     static boolean[][] checked;
     static int N = 19;
-    static int[][] dirWidth = new int[][]{{-1,0},{1,0}};
-    static int[][] dirLength = new int[][]{{0,1},{0,-1}};
+    static int[][] dirWidth = new int[][]{{0,1},{0,-1}};
+    static int[][] dirLength = new int[][]{{-1,0},{1,0}};
     static int[][] dirCross1 = new int[][]{{-1,1},{1,-1}};
     static int[][] dirCross2 = new int[][]{{1,1},{-1,-1}};
+    static List<int[][]> searchDirList = new ArrayList<>(List.of(dirWidth, dirLength, dirCross1, dirCross2));
     static int count;
 
 
@@ -44,66 +43,18 @@ class Main {
             }
         }
 
-//        for (int i = 0; i < N; i++) {
-//            for (int j = 0; j < N; j++) {
-//                System.out.print(board[i][j]);
-//            }
-//            System.out.println();
-//        }
-
-
-
-
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-
-                if(board[i][j] == 0) {
-                    checked[i][j] = true;
-                    continue;
-                }
-
                 if(board[i][j] == 1 || board[i][j] == 2) {
-                    count = 0;
-                    checked[i][j] = false;
-                    dfsWidth(i, j);
-                    if (count == 5) {
-                        result = board[i][j];
-                        resultI = i + 1;
-                        resultJ = j + 1;
-                        break;
+                    for (int[][] dirList : searchDirList) {
+                        count = 0;
+                        dfs(i,j,dirList);
+                        if (count == 5 && isLeft(resultJ, j)) {
+                            result = board[i][j];
+                            resultI = i + 1;
+                            resultJ = j + 1;
+                        }
                     }
-//                    System.out.println("width " + count);
-                    count = 0;
-                    checked[i][j] = false;
-                    dfsLength(i,j);
-                    if (count == 5) {
-                        result = board[i][j];
-                        resultI = i + 1;
-                        resultJ = j + 1;
-                        break;
-                    }
-//                    System.out.println("length " + count);
-                    count = 0;
-                    checked[i][j] = false;
-                    dfsCross1(i,j);
-                    if (count == 5) {
-                        result = board[i][j];
-                        resultI = i + 1;
-                        resultJ = j + 1;
-                        break;
-                    }
-//                    System.out.println("dfsCross1 " + count);
-                    count = 0;
-                    checked[i][j] = false;
-                    dfsCross2(i,j);
-                    if (count == 5) {
-                        result = board[i][j];
-                        resultI = i + 1;
-                        resultJ = j + 1;
-                        break;
-                    }
-//                    System.out.println("dfsCross2 " + count);
-
                 }
             }
         }
@@ -114,16 +65,8 @@ class Main {
             System.out.print(resultI + " " + resultJ);
         }
 
-
-//        for (int i = 0; i < N; i++) {
-//            for (int j = 0; j < N; j++) {
-//                System.out.print(checked[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-
     }
-    private static void dfsCross1(int i, int j) {
+    private static void dfs(int i, int j, int[][] dirList) {
         if(checked[i][j]) return;
 
         int node = board[i][j];
@@ -131,76 +74,25 @@ class Main {
         count++;
 
         for (int k = 0; k < 2; k++) {
-            int nextI = i + dirCross1[k][0];
-            int nextJ = j + dirCross1[k][1];
+            int nextI = i + dirList[k][0];
+            int nextJ = j + dirList[k][1];
 
             if (isRange(nextI,nextJ) && board[nextI][nextJ] == node) {
                 if (board[i][j] == board[nextI][nextJ]) {
-                    dfsCross1(nextI, nextJ);
+                    dfs(nextI, nextJ, dirList);
                 }
             }
         }
+        checked[i][j] = false;
     }
 
-    private static void dfsCross2(int i, int j) {
-        if(checked[i][j]) return;
-
-        int node = board[i][j];
-        checked[i][j] = true;
-        count++;
-
-        for (int k = 0; k < 2; k++) {
-            int nextI = i + dirCross2[k][0];
-            int nextJ = j + dirCross2[k][1];
-
-            if (isRange(nextI,nextJ) && board[nextI][nextJ] == node) {
-                if (board[i][j] == board[nextI][nextJ]) {
-                    dfsCross2(nextI, nextJ);
-                }
-            }
-        }
-    }
-
-    private static void dfsWidth(int i, int j) {
-        if(checked[i][j]) return;
-
-        int node = board[i][j];
-        checked[i][j] = true;
-        count++;
-
-        for (int k = 0; k < 2; k++) {
-            int nextI = i + dirWidth[k][0];
-            int nextJ = j + dirWidth[k][1];
-
-            if (isRange(nextI,nextJ) && board[nextI][nextJ] == node) {
-                if (board[i][j] == board[nextI][nextJ]) {
-                    dfsWidth(nextI, nextJ);
-                }
-            }
-        }
-    }
-
-    private static void dfsLength(int i, int j) {
-        if(checked[i][j]) return;
-
-        int node = board[i][j];
-        checked[i][j] = true;
-        count++;
-
-        for (int k = 0; k < 2; k++) {
-            int nextI = i + dirLength[k][0];
-            int nextJ = j + dirLength[k][1];
-
-            if (isRange(nextI,nextJ) && board[nextI][nextJ] == node) {
-                if (board[i][j] == board[nextI][nextJ]) {
-                    dfsLength(nextI, nextJ);
-                }
-            }
-        }
-    }
 
     private static boolean isRange(int i, int j) {
-        return i > 0 && i < N && j > 0 && j < N;
+        return i >= 0 && i < N && j >= 0 && j < N;
+    }
+
+    private static boolean isLeft(int resultJ, int j) {
+        return resultJ == 0 || j + 1 < resultJ;
     }
 
 }
