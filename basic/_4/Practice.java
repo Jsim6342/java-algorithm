@@ -4,20 +4,21 @@ import java.util.ArrayList;
 
 /**
  * DFS
+ * 1~5번 지점으로 구성된 그래프에서 1번에서 BFS 탐색
  */
-class Main {
+public class Practice {
 
     static ArrayList<Integer>[] adjList;
     static boolean[] visited;
 
     public static void main(String[] args) {
+        // 1~5번 지점 연결리스트 갱신
         int N = 6;
         adjList = new ArrayList[N];
         visited = new boolean[N];
-        for(int i = 1 ; i < N ; i ++) {
+        for (int i = 0; i < N; i++) {
             adjList[i] = new ArrayList<Integer>();
         }
-
         adjList[1].add(2); adjList[1].add(3);
         adjList[2].add(5); adjList[2].add(4);
         adjList[3].add(4);
@@ -26,16 +27,15 @@ class Main {
         dfs(1);
     }
 
-    public static void dfs(int node) {
-        if (visited[node] == true) return;
+    private static void dfs(int node) {
+        if(visited[node]) return;
 
         System.out.print(node + " ");
         visited[node] = true;
 
-        for (Integer nextNode : adjList[node]) {
+        for(int nextNode : adjList[node]) {
             dfs(nextNode);
         }
-
     }
 
 }

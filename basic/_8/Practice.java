@@ -7,7 +7,7 @@ import java.math.BigInteger;
  * 일정한 규칙을 갖는 DP 테이블 100번째 값 구하기
  * 1, 2번째 이전 인덱스를 더해서 인덱스를 갱신해 나가는 바텀업 점화식 세우기
  */
-class Main {
+public class Practice {
     public static void main(String[] args) {
         BigInteger[] dp = new BigInteger[101];
         int N = dp.length;
@@ -20,6 +20,5 @@ class Main {
         }
 
         System.out.println(dp[N - 1]);
-
     }
 }

@@ -1,10 +1,10 @@
 package basic._3;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * 정렬
+ * Class 미활용 정렬
  */
 class Main {
     public static void main(String[] args) {
