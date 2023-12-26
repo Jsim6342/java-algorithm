@@ -2,6 +2,7 @@ package basic._5;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -24,19 +25,19 @@ public class Practice {
         adjList[3].add(4);
         adjList[4].add(1);
 
-        ArrayDeque<Integer> q = new ArrayDeque<>();
+        Queue<Integer> q = new LinkedList<>();
         q.add(1);
         visited[1] = true;
 
-        while (q.size() != 0) {
-            Integer node = q.pollFirst();
+        while (!q.isEmpty()) {
+            Integer node = q.poll();
 
-            System.out.print(node + " ");
+            System.out.print(node + " "); // 탐색 요구사항
 
             for(Integer nextNode : adjList[node]) {
-                if (visited[nextNode]) continue;
+                if (visited[nextNode]) continue; // 탐색 여부 확인
                 q.add(nextNode);
-                visited[nextNode] = true;
+                visited[nextNode] = true; // 탐색 체크
             }
         }
 

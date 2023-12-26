@@ -27,18 +27,17 @@ public class Main2 {
     }
 
     private static void permutation(int level) {
-        if (level == T) {
+        if(level == T) {
             result.add(new ArrayList<>(choose.stream().sorted().toList()));
             return;
         }
 
-        for (int i = 1; i < N + 1; i++) {
+        for (int i = 1; i <= N; i++) {
             if (choose.contains(i)) continue;
             choose.add(i);
             permutation(level + 1);
-            choose.remove(choose.size()-1);
+            choose.remove(choose.size() - 1);
         }
     }
-
 
 }

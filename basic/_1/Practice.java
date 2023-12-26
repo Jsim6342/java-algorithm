@@ -23,13 +23,13 @@ public class Practice {
     }
 
     public static void permutation(int level) {
-        if(level == T) {
-            result.add(new ArrayList<>(choose));
-            return;
-        }
+      if(level == T) {
+          result.add(new ArrayList<>(choose));
+          return;
+      }
 
         for (int i = 1; i <= N; i++) {
-            if(choose.contains(i)) continue;
+            if (choose.contains(i)) continue;
             choose.add(i);
             permutation(level + 1);
             choose.remove(choose.size() - 1);

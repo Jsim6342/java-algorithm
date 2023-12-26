@@ -28,12 +28,12 @@ public class Practice {
     }
 
     private static void dfs(int node) {
-        if(visited[node]) return;
+        if(visited[node]) return; // 탐색 여부 확인
 
-        System.out.print(node + " ");
-        visited[node] = true;
+        System.out.print(node + " "); // 탐색 요구사항
+        visited[node] = true; // 탐색 체크
 
-        for(int nextNode : adjList[node]) {
+        for(Integer nextNode : adjList[node]) {
             dfs(nextNode);
         }
     }

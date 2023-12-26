@@ -3,6 +3,7 @@ package basic._3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 /**
  * 정렬
@@ -36,7 +37,7 @@ public class Main2 {
         // 첫 번째, 두 번째 요소로 오름차순 정렬
         arr.sort((a,b) -> {
             int res = a.en.compareTo(b.en);
-            if (res != 0) return res;
+            if(res != 0) return res;
             return Integer.compare(a.num, b.num);
         });
         arr.stream().forEach(System.out::println);
@@ -46,6 +47,7 @@ public class Main2 {
         Integer[] array = new Integer[]{1, 3, 3, 4, 5, 7, 9, 10, 11, 13, 13, 16};
         Arrays.sort(array); // 오름차순
         Arrays.sort(array, Comparator.reverseOrder()); // 내림차순
+        Arrays.sort(array, (a,b) -> Integer.compare(b, a)); // 오름차순
     }
 }
 
