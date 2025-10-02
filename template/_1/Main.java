@@ -90,7 +90,7 @@ class Main {
         List<Integer> list1 = new ArrayList<>(); // 정수 리스트
         List<Integer> list2 = new ArrayList<>(List.of(1, 2, 3)); // 초기화 선언
         System.out.println("list1: " + list1);
-        System.out.println("list1: " + list2);
+        System.out.println("list2: " + list2);
 
         // 2차원 리스트 선언
         List<List<Integer>> doubleList1 = new ArrayList<>();
@@ -129,23 +129,6 @@ class Main {
             copyList.add(new ArrayList<>(row));
         }
         System.out.println("copyList: " + copyList);
-    }
-
-
-    // linked list
-    // 실제 코테에선 ArrayDeque로 대체(캐시 친화적, GC 부담 낮은, 성능 최적화 이슈 등으로)
-    private static void linkedList() {
-        // 선언
-        Deque<Integer> list1 = new LinkedList<>();
-        Deque<Integer> list2 = new LinkedList<>(List.of(1, 2, 3, 4));
-
-        // 메소드
-        list2.addLast(5);
-        list2.addFirst(0);
-        System.out.println("list2 after add: " + list2);
-        list2.removeLast();
-        list2.removeFirst();
-        System.out.println("list2 after remove last: " + list2);
     }
 
 
@@ -271,6 +254,25 @@ class Main {
         hashset2.add("노정호");
         hashset2.remove(2023390);
         hashset2.contains("노정호"); // true
+    }
+
+
+    /**
+     * linked list
+     * 실제 코테에선 ArrayDeque로 대체(캐시 친화적, GC 부담 낮은, 성능 최적화 이슈 등으로)
+     */
+    private static void linkedList() {
+        // 선언
+        Deque<Integer> list1 = new LinkedList<>();
+        Deque<Integer> list2 = new LinkedList<>(List.of(1, 2, 3, 4));
+
+        // 메소드
+        list2.addLast(5);
+        list2.addFirst(0);
+        System.out.println("list2 after add: " + list2);
+        list2.removeLast();
+        list2.removeFirst();
+        System.out.println("list2 after remove last: " + list2);
     }
 
 
