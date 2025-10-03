@@ -6,12 +6,6 @@ import java.util.*;
  * Java 자료구조 정리
  */
 class Practice {
-
-    static List<Integer> choose = new ArrayList<>();
-    static List<List<Integer>> result = new ArrayList<>();
-    static int N = 10;
-    static int T = 3;
-
     public static void main(String[] args) {
         System.out.println("=============== Array Methods ===============");
         array();
