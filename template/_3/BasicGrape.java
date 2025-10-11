@@ -32,7 +32,7 @@ class BasicGrape {
         System.out.println();
 
         System.out.println("dfsWithArray:");
-        dfsWithArray(graph, 0, new boolean[8]);
+        dfsWithArray(graph, 0, new boolean[graph.size()]);
         System.out.println();
     }
 
