@@ -8,7 +8,32 @@ import java.util.*;
  */
 class BasicGrape {
     public static void main(String[] args) {
+        List<List<Integer>> graph = new ArrayList<>(){{
+           add(List.of(3,1,6));
+           add(List.of(0,3));
+           add(List.of(3));
+           add(List.of(2,7,1,0));
+           add(List.of(5));
+           add(List.of(6,7,4));
+           add(List.of(0,5));
+           add(List.of(3,5));
+        }};
 
+        System.out.println("bfsWithSet:");
+        bfsWithSet(graph, 0);
+        System.out.println();
+
+        System.out.println("bfsWithArray:");
+        bfsWithArray(graph, 0);
+        System.out.println();
+
+        System.out.println("dfsWithSet:");
+        dfsWithSet(graph, 0, new HashSet<>());
+        System.out.println();
+
+        System.out.println("dfsWithArray:");
+        dfsWithArray(graph, 0, new boolean[8]);
+        System.out.println();
     }
 
     // BFS
@@ -23,6 +48,7 @@ class BasicGrape {
         while (!queue.isEmpty()) {
             // 현재 노드 방문
             int cur = queue.remove();
+            System.out.print(cur + " ");
             // 다음 노드 예약
             for (int next : graph.get(cur)) {
                 if (!visited.contains(next)) {
@@ -47,7 +73,7 @@ class BasicGrape {
         while (!queue.isEmpty()) {
             // 현재 노드 방문
             int cur = queue.remove();
-
+            System.out.print(cur + " ");
             // 다음 노드 예약
             for (int next : graph.get(cur)) {
                 if (!visited[next]) {
@@ -65,7 +91,7 @@ class BasicGrape {
     private static void dfsWithSet(List<List<Integer>> graph, int cur, Set<Integer> visited) {
         // 현재 노드 방문
         visited.add(cur);
-
+        System.out.print(cur + " ");
         // 다음 노드 탐색
         for (int next : graph.get(cur)) {
             if (!visited.contains(next)) {
@@ -80,7 +106,7 @@ class BasicGrape {
     private static void dfsWithArray(List<List<Integer>> graph, int cur, boolean[] visited) {
         // 현재 노드 방문
         visited[cur] = true;
-
+        System.out.print(cur + " ");
         // 다음 노드 탐색
         for (int next : graph.get(cur)) {
             if (!visited[next]) {
