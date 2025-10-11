@@ -8,7 +8,32 @@ import java.util.*;
  */
 class Practice {
     public static void main(String[] args) {
+        List<List<Integer>> graph = new ArrayList<>(){{
+            add(List.of(3,1,6));
+            add(List.of(0,3));
+            add(List.of(3));
+            add(List.of(2,7,1,0));
+            add(List.of(5));
+            add(List.of(6,7,4));
+            add(List.of(0,5));
+            add(List.of(3,5));
+        }};
 
+        System.out.println("bfsWithSet:");
+        bfsWithSet(graph, 0);
+        System.out.println();
+
+        System.out.println("bfsWithArray:");
+        bfsWithArray(graph, 0);
+        System.out.println();
+
+        System.out.println("dfsWithSet:");
+        dfsWithSet(graph, 0, new HashSet<>());
+        System.out.println();
+
+        System.out.println("dfsWithArray:");
+        dfsWithArray(graph, 0, new boolean[graph.size()]);
+        System.out.println();
     }
 
     // BFS
