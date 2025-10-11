@@ -55,12 +55,12 @@ public class Permutation {
     public static List<List<Integer>> permuteWithArray(int[] nums, int r) {
         List<List<Integer>> ans = new ArrayList<>();
         boolean[] visited = new boolean[nums.length];
-        backtrackWithRange(r, new ArrayList<>(), nums, visited, ans);
+        backtrackWithArray(r, new ArrayList<>(), nums, visited, ans);
         return ans;
     }
 
     // 배열로 받아 순열 뽑기 백트래킹
-    private static void backtrackWithRange(int r, List<Integer> curr, int[] nums, boolean[] visited, List<List<Integer>> ans) {
+    private static void backtrackWithArray(int r, List<Integer> curr, int[] nums, boolean[] visited, List<List<Integer>> ans) {
         if (curr.size() == r) {
             ans.add(new ArrayList<>(curr));
             return;
@@ -70,7 +70,7 @@ public class Permutation {
             if (!visited[i]) {
                 curr.add(nums[i]);
                 visited[i] = true;
-                backtrackWithRange(r, curr, nums, visited, ans);
+                backtrackWithArray(r, curr, nums, visited, ans);
                 curr.remove(curr.size() - 1);
                 visited[i] = false; // Backtracking: 원래 상태로 되돌리기
             }
