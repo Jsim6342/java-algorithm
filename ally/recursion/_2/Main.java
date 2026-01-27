@@ -7,60 +7,52 @@ import java.util.Scanner;
  * 링크: https://www.acmicpc.net/problem/4779
 */
 class Main {
-    static int[] memo;
+    static StringBuilder answer;
 
-    public int solution(int number) {
-        return fibo(number);
-    }
+    public void solution(int number) {
+        int length = (int) Math.pow(3, number);
 
-    public int fibo(int number) {
-        // 최초 array 초기화
-        if(memo == null) {
-            memo = new int[number + 1];
+        answer = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            answer.append("-");
         }
 
+        // 재귀 시작
+        fibo(0, length);
+
+        System.out.println(answer);
+    }
+
+    public void fibo(int start, int length) {
         // 종료조건
-        if (number == 0) return 0;
-        if (number == 1) return 1;
-        if (number == 2) return 1;
-
-        // 메모이제이션
-        if(memo[number] != 0) {
-            return memo[number];
+        if(length == 1) {
+            return;
         }
 
-        // 반복조건
-        memo[number] = fibo(number - 1) + fibo(number - 2);
-        return memo[number];
+        int newSize = length / 3;
+        int startIndex = start + newSize;
+        int endIndex = start + 2 * newSize;
+
+        for (int i = start + newSize; i < start + 2 * newSize; i++) {
+            answer.setCharAt(i, ' ');
+        }
+
+        // 왼쪽 구간 재귀
+        fibo(start, newSize);
+
+        // 오른쪽 구간 재귀
+        fibo(start + 2 * newSize, newSize);
     }
 
-//    public int fibo(int number) {
-//        // 1. 함수 진입 로그
-//        System.out.println("fibo(" + number + ") 시작");
-//
-//        // 종료조건
-//        if (number == 1 || number == 2) {
-//            System.out.println("-> fibo(" + number + ")는 1 리턴 (종료)");
-//            return 1;
-//        }
-//
-//        // 반복조건
-//        // 계산 과정을 보기 위해 바로 return하지 않고 변수에 담습니다.
-//        int result = fibo(number - 1) + fibo(number - 2);
-//
-//        // 2. 계산 완료 로그
-//        System.out.printf("-> fibo(%d) 계산 끝: fibo(%d) + fibo(%d) = %d\n",
-//                number, number - 1, number - 2, result);
-//
-//        return result;
-//    }
 
     public static void main(String[] args) {
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
 
-        System.out.println(T.solution(input));
+        while (sc.hasNextInt()) {
+            int input = sc.nextInt();
+            T.solution(input);
+        }
         sc.close();
     }
 }
